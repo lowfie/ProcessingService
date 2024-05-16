@@ -2,6 +2,8 @@ include .env
 
 compose = docker compose
 
+init: up revision upgrade-head create-admin
+
 up:
 	$(compose) -f docker-compose.yaml up --build -d
 
@@ -35,10 +37,7 @@ downgrade:
 clean-migrations:
 	find . -path "*/alembic/versions/*.py" -not -path "*/venv/*" -not -path "*/__init__.py" -delete
 
-clean-db:
-	rm -rf .docker/postgres
-
-clean: clean-db clean-migrations
+clean: clean-migrations
 
 restart: down up
 
