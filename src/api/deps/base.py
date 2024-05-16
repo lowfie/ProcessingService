@@ -22,8 +22,7 @@ async def get_current_user(
 ) -> "User":
     user = await users.get_by(
         db=db,
-        username=credentials.subject.get("username"),
-        password=credentials.subject.get("password"),
+        id=credentials.subject.get("user_id"),
     )
     if not user:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED)

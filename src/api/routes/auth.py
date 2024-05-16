@@ -34,5 +34,5 @@ async def get_access_token(
     if not user:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Wrong username or password")
 
-    access_token = auth.access_security.create_access_token(subject=payload.dict())
+    access_token = auth.access_security.create_access_token(subject=dict(user_id=user.id))
     return auth.AccessTokenSchema(access_token=access_token)
