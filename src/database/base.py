@@ -13,6 +13,11 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
 class Base(DeclarativeBase):
+    """
+    Base class used for declarative class definitions.
+
+    [T] - dynamic typing of database model classes
+    """
     id: Mapped[str] = mapped_column(BigInteger, primary_key=True)
     created_at: Mapped[datetime] = mapped_column(default=func.now())
     updated_at: Mapped[datetime] = mapped_column(
