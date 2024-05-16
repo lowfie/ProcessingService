@@ -1,0 +1,11 @@
+.venv
+.idea
+.env
+.env.example
+.gitignore
+.git
+poetry.lock
+.dockerignore
+Dockerfile
+README.md
+**/*__pycache__
