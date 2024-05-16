@@ -8,8 +8,6 @@ services:
       context: .
     ports:
       - "${DOCKER_EXPOSE_PORT:-8000}:8000"
-    volumes:
-      - ./src/:/usr/src/app/src
     depends_on:
       db:
         condition: service_healthy
@@ -32,7 +30,7 @@ services:
     ports:
       - "${POSTGRES_PORT}:${POSTGRES_PORT}"
     volumes:
-      - ./.docker/postgres/data:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER}"]
       interval: 10s
@@ -41,3 +39,6 @@ services:
 
 networks:
   handler-service:
+
+volumes:
+  postgres:
